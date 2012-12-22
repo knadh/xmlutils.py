@@ -64,7 +64,7 @@ for event, elem in context:
 		started = True
 
 	#child nodes of the specified record tag
-	if started and event == 'start' and elem.tag != args.tag and elem.tag not in args.ignore:
+	if started and event == 'end' and elem.tag != args.tag and elem.tag not in args.ignore:
 		tags.append(elem.tag) if tagged == False else True	# field names
 		items.append( '-' if elem.text == None or elem.text.strip() == ''
 						 else elem.text.replace('"', '\\\"')

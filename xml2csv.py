@@ -56,7 +56,7 @@ for event, elem in context:
 	if event == 'start' and elem.tag == args.tag and not started:
 		started = True
 
-	if started and event == 'start' and elem.tag != args.tag and elem.tag not in args.ignore:	#child nodes of the specified record tag
+	if started and event == 'end' and elem.tag != args.tag and elem.tag not in args.ignore:	#child nodes of the specified record tag
 		tags.append(elem.tag) if tagged == False else True	# csv header (element tag names)
 		items.append( '' if elem.text == None or elem.text.strip() == '' else elem.text.replace('"', '\\\"') )
 	
