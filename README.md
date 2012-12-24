@@ -87,7 +87,7 @@ Convert an XML document to an SQL file.
 python xml2sql.py --input "samples/fruits.xml" --output "samples/fruits.sql" --tag "item" --table "myfruits"
 </pre>
 
-##options
+### options
 <table>
 	<tbody>
 		<tr>
@@ -136,3 +136,27 @@ python xml2sql.py --input "samples/fruits.xml" --output "samples/fruits.sql" --t
 		</tr>
 	</tbody>
 </table>
+
+##xml2json.py
+Convert XML to JSON (requies the <a href="http://code.google.com/p/simplejson/">simplejson</a> library).
+
+Unlike xml2sql and xml2csv, xml2py is not a stand alone utility, but a library. Moreover, it
+supports hierarchies nested to any number of levels.
+
+### usage
+```python
+from xml2json import *
+
+# given an ElementTree Element, return its json
+json = xml2json(elem)
+
+
+# __________ Working with files
+# xml2json_file(input_filename, output_filename[optional], prettyprint[True or False], file_encoding[default: utf-8])
+
+# read an xml file and return json
+json = xml2json_file("samples/fruits.xml")
+
+# read an xml file and write json to a file
+xml2json_file("samples/fruits.xml", "samples/fruits.json")
+```
