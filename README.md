@@ -1,6 +1,6 @@
 # xmlutils.py
 A set of Python scripts for processing xml files serially, 
-namely converting them to other formats (SQL, CSV). The scripts use ElementTree.iterparse() 
+namely converting them to other formats (SQL, CSV, JSON). The scripts use ElementTree.iterparse() 
 to iterate through nodes in an XML file, thus not needing to load the whole DOM into memory. 
 The scripts can be used to churn through large XML files (albeit taking long :P) without 
 memory hiccups. (Note: The XML files are NOT validated by the scripts.)
