@@ -138,7 +138,7 @@ python xml2sql.py --input "samples/fruits.xml" --output "samples/fruits.sql" --t
 </table>
 
 ##xml2json.py
-Convert XML to JSON (requies the <a href="http://code.google.com/p/simplejson/">simplejson</a> library).
+Convert XML to JSON (requies the <a href="http://github.com/simplejson/simplejson">simplejson</a> library).
 
 Unlike xml2sql and xml2csv, xml2py is not a stand alone utility, but a library. Moreover, it
 supports hierarchies nested to any number of levels.
