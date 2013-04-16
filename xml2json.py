@@ -7,7 +7,7 @@
 	Documentation:	http://nadh.in/code/xmlutils.py
 '''
 
-import argparse, codecs, elementtree.ElementTree as et
+import argparse, codecs, xml.etree.ElementTree as et
 import json
 
 

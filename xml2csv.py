@@ -7,7 +7,7 @@
 	Documentation:	http://kailashnadh.name/code/xmlutils.py
 '''
 
-import argparse, codecs, elementtree.ElementTree as et
+import argparse, codecs, xml.etree.ElementTree as et
 
 print "xml2sql.py by Kailash Nadh (http://kailashnadh.name)\n--help for help\n\n"
 
