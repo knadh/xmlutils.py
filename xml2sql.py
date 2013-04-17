@@ -98,8 +98,5 @@ for event, elem in context:
 	if n == args.limit:
 		break
 
-	elem.clear() # discard element and recover memory
-
-
 write_buffer()
 show_stats()
