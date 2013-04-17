@@ -1,18 +1,23 @@
-﻿'''
-	xml2csv.py
-	Kailash Nadh, http://kailashnadh.name
-	October 2011
-	
-	License:		MIT License
-	Documentation:	http://kailashnadh.name/code/xmlutils.py
-'''
+﻿"""
+    xml2csv.py
+    Kailash Nadh, http://nadh.in
+    October 2011
+    
+    License:        MIT License
+    Documentation:    http://nadh.in/code/xmlutils.py
+"""
 
-import argparse, codecs, xml.etree.ElementTree as et
+import argparse
+import codecs
+import xml.etree.ElementTree as et
 
-print "xml2sql.py by Kailash Nadh (http://kailashnadh.name)\n--help for help\n\n"
+print """xml2csv.py by Kailash Nadh (http://nadh.in)
+--help for help
+
+"""
 
 # parse arguments
-parser = argparse.ArgumentParser(description='Process some integers.')
+parser = argparse.ArgumentParser(description='Convert an xml file to csv format.')
 parser.add_argument('--input', dest='input_file', required=True, help='input xml filename')
 parser.add_argument('--output', dest='output_file', required=True, help='output csv filename')
 parser.add_argument('--tag', dest='tag', required=True, help='the record tag. eg: item')
@@ -30,54 +35,66 @@ output = codecs.open(args.output_file, "w", encoding=args.encoding)
 # open the xml file for iteration
 context = et.iterparse(args.input_file, events=("start", "end"))
 context = iter(context)
+
 # get to the root
 event, root = context.next()
 
+items = []
+tags = []
+output_buffer = []
 
-items = []; tags = []; output_buffer = []
 tagged = False
 started = False
 n = 0
 
-# write records to the output file
+
 def write_buffer():
-	global output_buffer, output
-	
-	output.write(  '\n'.join(output_buffer) + '\n' )
-	output_buffer = []
-	
-	print ".",
+    """
+    Write records from buffer to the output file
+    """
+    global output_buffer, output
+    
+    output.write('\n'.join(output_buffer) + '\n')
+    output_buffer = []
+    
+    print ".",
+
 
 def show_stats():
-	print "\n\nWrote", n, "records to", args.output_file
+    print "\n\nWrote", n, "records to", args.output_file
 
 # iterate through the xml
 for event, elem in context:
-	if event == 'start' and elem.tag == args.tag and not started:
-		started = True
+    if event == 'start' and elem.tag == args.tag and not started:
+        started = True
 
-	if started and event == 'end' and elem.tag != args.tag and elem.tag not in args.ignore:	#child nodes of the specified record tag
-		tags.append(elem.tag) if tagged == False else True	# csv header (element tag names)
-		items.append( '' if elem.text == None or elem.text.strip() == '' else elem.text.replace('"', '\\\"') )
-	
-	# end of traversing the record tag
-	if event == 'end' and elem.tag == args.tag and len(items) > 0:
-		# csv header (element tag names)
-		output.write('#' + (args.delimiter).join(tags) + '\n') if args.header == 1 and tagged == False else True
-		tagged = True
+    elif event == 'end':
+        if started and elem.tag != args.tag and elem.tag not in args.ignore:  # child nodes of the specified record tag
+            if not tagged:
+                tags.append(elem.tag)  # add tag name to csv header
+            items.append('' if elem.text is None else elem.text.strip().replace('"', r'\"'))
 
-		# send the csv to buffer
-		output_buffer.append('\"' + ('\"' + args.delimiter + '\"').join(items) + '\"')
-		items = []
-		n+=1
-		
-		# flush buffer to disk
-		if len(output_buffer) > args.buffer:
-			write_buffer()
-	
-	# halt if the specified limit has been hit
-	if n == args.limit:
-		break
+        # end of traversing the record tag
+        elif elem.tag == args.tag and len(items) > 0:
+            # csv header (element tag names)
+            if args.header == 1 and not tagged:
+                output.write('#' + args.delimiter.join(tags) + '\n')
+            tagged = True
+
+            # send the csv to buffer
+            output_buffer.append(r'"' + (r'"' + args.delimiter + r'"').join(items) + r'"')
+            items = []
+            n += 1
+
+            # halt if the specified limit has been hit
+            if n == args.limit:
+                break
+
+            # flush buffer to disk
+            if len(output_buffer) > args.buffer:
+                write_buffer()
+
+        elem.clear()  # discard element and recover memory
 
 write_buffer()
 show_stats()
