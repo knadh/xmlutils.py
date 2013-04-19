@@ -39,8 +39,9 @@ context = iter(context)
 event, root = context.next()
 
 items = []
-tags = []
+fields = []
 output_buffer = []
+field_name = ''
 
 tagged = False
 started = False
@@ -73,34 +74,43 @@ def show_stats():
 
 # iterate through the xml
 for event, elem in context:
-    if event == 'start' and elem.tag == args.tag and not started:
-        started = True
+    # if elem is an unignored child node of the record tag, it should be written to buffer
+    should_write = elem.tag != args.tag and started and elem.tag not in args.ignore
+    # and if the user wants a fields and we have not created one yet, we should tag it too
+    should_tag = not tagged and should_write
 
-    elif event == 'end':
-        if started and elem.tag != args.tag and elem.tag not in args.ignore:
-        # child nodes of the specified record tag
-            if not tagged:
-                tags.append(elem.tag)  # add field names
+    if event == 'start':
+        if elem.tag == args.tag and not started:
+            started = True
+        elif should_tag:
+            # if elem is nested inside a "parent", field name becomes parent_elem
+            field_name = '_'.join((field_name, elem.tag)) if field_name else elem.tag
+
+    else:
+        if should_write:
+            if should_tag:
+                fields.append(field_name)  # add field name to csv header
+                # remove current tag from the tag name chain
+                field_name = field_name.rpartition('_' + elem.tag)[0]
             if elem.text is None or elem.text.strip() == '':
                 items.append('-')
             else:
                 items.append(elem.text.replace('"', r'\"').replace('\n', r'\n').replace('\'', r"\'"))
 
-        elif elem.tag == args.tag and len(items) > 0:
         # end of traversing the record tag
+        elif elem.tag == args.tag and len(items) > 0:
             tagged = True
 
             if sql_insert is None:
-                sql_insert = 'INSERT INTO ' + args.table + ' (' + ','.join(tags) + ')\n'
-
+                sql_insert = 'INSERT INTO ' + args.table + ' (' + ','.join(fields) + ')\n'
             sql = r'("' + r'", "'.join(items) + r'")'
             sql_len += len(sql)
 
-            # store the sql statement in the buffer
             if sql_len + len(sql_insert) + 100 < max_packet:
+                # store the sql statement in the buffer
                 output_buffer.append(sql)
             else:
-            # packet size exceeded. flush the sql and start a new insert query
+                # packet size exceeded. flush the sql and start a new insert query
                 write_buffer()
                 output_buffer.append(sql)
                 sql_len = 0
@@ -114,5 +124,5 @@ for event, elem in context:
 
         elem.clear()  # discard element and recover memory
 
-write_buffer()
+write_buffer()  # write rest of the buffer to file
 show_stats()

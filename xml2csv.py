@@ -23,7 +23,7 @@ parser.add_argument('--output', dest='output_file', required=True, help='output 
 parser.add_argument('--tag', dest='tag', required=True, help='the record tag. eg: item')
 parser.add_argument('--delimiter', dest='delimiter', default=', ', help='delimiter character. (default=, comma-space)')
 parser.add_argument('--ignore', dest='ignore', default='', nargs='+', help='list of tags to ignore')
-parser.add_argument('--header', dest='header', type=int, default=1, help='print csv header (1=yes, 0=no)? (default=1)')
+parser.add_argument('--no-header', dest='header', action='store_false', default=True, help='do not print csv header (default=False)')
 parser.add_argument('--encoding', dest='encoding', default='utf-8', help='character encoding (default=utf-8)')
 parser.add_argument('--limit', type=int, dest='limit', default=-1, help='maximum number of records to process')
 parser.add_argument('--buffer', type=int, dest='buffer', default='1000', help='number of records to keep in buffer before writing to disk (default=1000)')
@@ -40,8 +40,9 @@ context = iter(context)
 event, root = context.next()
 
 items = []
-tags = []
+header = []
 output_buffer = []
+field_name = ''
 
 tagged = False
 started = False
@@ -65,20 +66,31 @@ def show_stats():
 
 # iterate through the xml
 for event, elem in context:
-    if event == 'start' and elem.tag == args.tag and not started:
-        started = True
+    # if elem is an unignored child node of the record tag, it should be written to buffer
+    should_write = elem.tag != args.tag and started and elem.tag not in args.ignore
+    # and if the user wants a header and we have not created one yet, we should tag it too
+    should_tag = not tagged and should_write and args.header
 
-    elif event == 'end':
-        if started and elem.tag != args.tag and elem.tag not in args.ignore:  # child nodes of the specified record tag
-            if not tagged:
-                tags.append(elem.tag)  # add tag name to csv header
+    if event == 'start':
+        if elem.tag == args.tag and not started:
+            started = True
+        elif should_tag:
+            # if elem is nested inside a "parent", field name becomes parent_elem
+            field_name = '_'.join((field_name, elem.tag)) if field_name else elem.tag
+
+    else:
+        if should_write:
+            if should_tag:
+                header.append(field_name)  # add field name to csv header
+                # remove current tag from the tag name chain
+                field_name = field_name.rpartition('_' + elem.tag)[0]
             items.append('' if elem.text is None else elem.text.strip().replace('"', r'\"'))
 
         # end of traversing the record tag
         elif elem.tag == args.tag and len(items) > 0:
             # csv header (element tag names)
-            if args.header == 1 and not tagged:
-                output.write('#' + args.delimiter.join(tags) + '\n')
+            if args.header and not tagged:
+                output.write('#' + args.delimiter.join(header) + '\n')
             tagged = True
 
             # send the csv to buffer
@@ -96,5 +108,5 @@ for event, elem in context:
 
         elem.clear()  # discard element and recover memory
 
-write_buffer()
+write_buffer()  # write rest of the buffer to file
 show_stats()
