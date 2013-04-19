@@ -32,11 +32,16 @@ def elem2list(elem):
 					map(lambda e: e.values()[0], cur)
 				))
 		except Exception as e:  # [{a: 1}, {a: 2}, {a: 3}] => {a: [1, 2, 3]}
-			cur = {elem[0].tag: [e.values()[0] for e in cur]}
+			cur = {elem[0].tag: [e.values()[0] for e in cur if e.values()[0] is not None]}
 
 		block[elem.tag] = cur
 	else:
-		block[elem.tag] = elem.text.strip() if elem.text else ""
+		val = None
+		if elem.text:
+			val = elem.text.strip()
+			val = val if len(val) > 0 else None
+
+		block[elem.tag] = val 
 	
 	return block
 
