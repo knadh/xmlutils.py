@@ -25,7 +25,7 @@ def elem2list(elem):
         cur = map(elem2list, children)
 
         # create meaningful lists
-        if elem[0].tag != elem[1].tag:  # [{a: 1}, {b: 2}, {c: 3}] => {a: 1, b: 2, c: 3}
+        if 1 not in elem or elem[0].tag != elem[1].tag:  # [{a: 1}, {b: 2}, {c: 3}] => {a: 1, b: 2, c: 3}
             cur = dict(zip(
                 map(lambda e: e.keys()[0], cur),
                 map(lambda e: e.values()[0], cur)
