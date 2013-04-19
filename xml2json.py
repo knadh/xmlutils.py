@@ -33,12 +33,15 @@ def elem2list(elem):
 					map(lambda e: e.values()[0], cur)
 				))
 			else:
-				scalar = true
+				scalar = True
 		except Exception as e:  # [{a: 1}, {a: 2}, {a: 3}] => {a: [1, 2, 3]}
 			scalar = True
 
 		if scalar:
-			cur = {elem[0].tag: [e.values()[0] for e in cur if e.values()[0] is not None]}
+			if len(cur) > 1:
+				cur = {elem[0].tag: [e.values()[0] for e in cur if e.values()[0] is not None]}
+			else:
+				cur = {elem[0].tag: cur[0].values()[0] }
 
 		block[elem.tag] = cur
 	else:
