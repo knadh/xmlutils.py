@@ -52,9 +52,9 @@ python xml2csv.py --input "samples/fruits.xml" --output "samples/fruits.csv" --t
 			</td>
 		</tr>
 		<tr>
-			<td>--header</td>
+			<td>--no-header</td>
 			<td>
-				Whether to print the CSV header (list of fields) in the first line; 1=yes, 0=no. Default is 1.
+				Skip adding the CSV header (list of fields) to the first line; Default is False.
 			</td>
 		</tr>
 		<tr>
