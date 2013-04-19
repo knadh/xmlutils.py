@@ -25,13 +25,19 @@ def elem2list(elem):
 		cur = map(elem2list, children)
 
 		# create meaningful lists
+		scalar = False
 		try:
 			if elem[0].tag != elem[1].tag:  # [{a: 1}, {b: 2}, {c: 3}] => {a: 1, b: 2, c: 3}
 				cur = dict(zip(
 					map(lambda e: e.keys()[0], cur),
 					map(lambda e: e.values()[0], cur)
 				))
+			else:
+				scalar = true
 		except Exception as e:  # [{a: 1}, {a: 2}, {a: 3}] => {a: [1, 2, 3]}
+			scalar = True
+
+		if scalar:
 			cur = {elem[0].tag: [e.values()[0] for e in cur if e.values()[0] is not None]}
 
 		block[elem.tag] = cur
