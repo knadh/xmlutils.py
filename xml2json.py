@@ -8,7 +8,7 @@
 """
 
 import codecs
-import lxml.etree as et
+import xml.etree.ElementTree as et
 import json
 
 
