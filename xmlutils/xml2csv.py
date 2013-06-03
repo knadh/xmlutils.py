@@ -35,7 +35,7 @@ class xml2csv:
 			raise
 
 
-	def convert(self, tag="item", delimiter=",", ignore=[], header=False,
+	def convert(self, tag="item", delimiter=",", ignore=[], header=True,
 				limit=-1, buffer_size=1000):
 
 		"""Convert the XML file to SQL file
