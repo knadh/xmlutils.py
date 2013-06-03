@@ -48,7 +48,7 @@ class xml2json:
 			pretty -- pretty print json (default=True)
 		"""
 
-		json = self.get_json()
+		json = self.get_json(pretty)
 
 		# output file handle
 		try:
