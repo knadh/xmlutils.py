@@ -1,128 +1,139 @@
 ﻿"""
-    xml2sql.py
-    Kailash Nadh, http://nadh.in
-    October 2011
-    
-    License:        MIT License
-    Documentation:    http://nadh.in/code/xmlutils.py
+	xml2sql.py
+	Kailash Nadh, http://nadh.in
+	October 2011
+	
+	License:        MIT License
+	Documentation:    http://nadh.in/code/xmlutils.py
 """
 
-import argparse
 import codecs
 import xml.etree.ElementTree as et
 
-print """xml2sql.py by Kailash Nadh (http://nadh.in)
---help for help
+class xml2sql:
 
-"""
+	output_buffer = []
+	sql_insert = None
+	output = None
+	num_insert = 0
 
-# parse arguments
-parser = argparse.ArgumentParser(description='Convert an xml file to sql.')
-parser.add_argument('--input', type=file, dest='input_file', required=True, help='input xml filename')
-parser.add_argument('--output', dest='output_file', required=True, help='output sql filename')
-parser.add_argument('--tag', dest='tag', required=True, help='the record tag. eg: item')
-parser.add_argument('--table', dest='table', required=True, help='table name')
-parser.add_argument('--ignore', dest='ignore', default='', nargs='+', help='list of tags to ignore')
-parser.add_argument('--encoding', dest='encoding', default='utf-8', help='character encoding (default=utf-8)')
-parser.add_argument('--limit', type=int, dest='limit', default=-1, help='maximum number of records to process')
-parser.add_argument('--packet', type=float, dest='packet', default='8', help=r'maximum size of an insert query in MB. see MySQL\'s max_allowed_packet (default=8)')
-args = parser.parse_args()
+	def __init__(self, input_file, output_file, encoding='utf-8'):
+		"""Initialize the class with the paths to the input xml file
+		and the output sql file
 
-# output file handle
-output = codecs.open(args.output_file, "w", encoding=args.encoding)
+		Keyword arguments:
+		input_file -- input xml filename
+		output_file -- output sql filename
+		encoding -- character encoding
+		"""
 
-# open the xml file for iteration
-context = et.iterparse(args.input_file, events=("start", "end"))
-context = iter(context)
+		# open the xml file for iteration
+		self.context = et.iterparse(input_file, events=("start", "end"))
 
-# get to the root
-event, root = context.next()
-
-items = []
-fields = []
-output_buffer = []
-field_name = ''
-
-tagged = False
-started = False
-
-sql_len = 0
-sql_insert = None
-num_insert = 0
-n = 0
-
-packet_size = 0
-max_packet = 1048576 * args.packet
+		# output file handle
+		try:
+			self.output = codecs.open(output_file, "w", encoding=encoding)
+		except:
+			print("Failed to open the output file")
+			raise
 
 
-def write_buffer():
-    """
-    Write records from buffer to the output file
-    """
-    global output_buffer, sql_insert, output, num_insert
+	def convert(self, tag="item", table="table", ignore=[], limit=-1, packet=8):
+		"""Convert the XML file to SQL file
 
-    output.write(sql_insert + 'VALUES\n' + ', \n'.join(output_buffer) + ';\n\n')
-    output_buffer = []
-    num_insert += 1
+		 	Keyword arguments:
+			tag -- the record tag. eg: item
+			table -- table name
+			ignore -- list of tags to ignore
+			limit -- maximum number of records to process
+			packet -- maximum size of an insert query in MB (MySQL's max_allowed_packet)
 
-    print ".",
+			Returns:
+			{	num: number of records converted,
+				num_insert: number of sql insert statements generated
+			}
+		"""
+
+		self.context = iter(self.context)
+
+		# get to the root
+		event, root = self.context.next()
+
+		items = []
+		fields = []
+		field_name = ''
+
+		tagged = False
+		started = False
+
+		sql_len = 0
+		n = 0
+
+		packet_size = 0
+		max_packet = 1048576 * packet
 
 
-def show_stats():
-    print "\n\nWrote", n, "records to", args.output_file, " (INSERT queries =", num_insert, ")"
+		# iterate through the xml
+		for event, elem in self.context:
+			# if elem is an unignored child node of the record tag, it should be written to buffer
+			should_write = elem.tag != tag and started and elem.tag not in ignore
+			# and other fields that haven't been created
+			should_tag = not tagged and should_write
+
+			if event == 'start':
+				if elem.tag == tag and not started:
+					started = True
+				elif should_tag:
+					# if elem is nested inside a "parent", field name becomes parent_elem
+					field_name = '_'.join((field_name, elem.tag)) if field_name else elem.tag
+
+			else:
+				if should_write:
+					if should_tag:
+						fields.append(field_name)  # add field name to csv header
+						# remove current tag from the tag name chain
+						field_name = field_name.rpartition('_' + elem.tag)[0]
+					if elem.text is None or elem.text.strip() == '':
+						items.append('-')
+					else:
+						items.append(elem.text.replace('"', r'\"').replace('\n', r'\n').replace('\'', r"\'"))
+
+				# end of traversing the record tag
+				elif elem.tag == tag and len(items) > 0:
+					tagged = True
+
+					if self.sql_insert is None:
+						self.sql_insert = 'INSERT INTO ' + table + ' (' + ','.join(fields) + ')\n'
+
+					sql = r'("' + r'", "'.join(items) + r'")'
+					sql_len += len(sql)
+
+					if sql_len + len(self.sql_insert) + 100 < max_packet:
+						# store the sql statement in the buffer
+						self.output_buffer.append(sql)
+					else:
+						# packet size exceeded. flush the sql and start a new insert query
+						self._write_buffer()
+						self.output_buffer.append(sql)
+						sql_len = 0
+
+					items = []
+					n += 1
+
+					# halt if the specified limit has been hit
+					if n == limit:
+						break
+
+				elem.clear()  # discard element and recover memory
+
+		self._write_buffer()  # write rest of the buffer to file
+
+		return {"num": n, "num_insert": self.num_insert}
 
 
-# iterate through the xml
-for event, elem in context:
-    # if elem is an unignored child node of the record tag, it should be written to buffer
-    should_write = elem.tag != args.tag and started and elem.tag not in args.ignore
-    # and if the user wants a fields and we have not created one yet, we should tag it too
-    should_tag = not tagged and should_write
+	def _write_buffer(self):
+		"""Write records from buffer to the output file"""
 
-    if event == 'start':
-        if elem.tag == args.tag and not started:
-            started = True
-        elif should_tag:
-            # if elem is nested inside a "parent", field name becomes parent_elem
-            field_name = '_'.join((field_name, elem.tag)) if field_name else elem.tag
-
-    else:
-        if should_write:
-            if should_tag:
-                fields.append(field_name)  # add field name to csv header
-                # remove current tag from the tag name chain
-                field_name = field_name.rpartition('_' + elem.tag)[0]
-            if elem.text is None or elem.text.strip() == '':
-                items.append('-')
-            else:
-                items.append(elem.text.replace('"', r'\"').replace('\n', r'\n').replace('\'', r"\'"))
-
-        # end of traversing the record tag
-        elif elem.tag == args.tag and len(items) > 0:
-            tagged = True
-
-            if sql_insert is None:
-                sql_insert = 'INSERT INTO ' + args.table + ' (' + ','.join(fields) + ')\n'
-            sql = r'("' + r'", "'.join(items) + r'")'
-            sql_len += len(sql)
-
-            if sql_len + len(sql_insert) + 100 < max_packet:
-                # store the sql statement in the buffer
-                output_buffer.append(sql)
-            else:
-                # packet size exceeded. flush the sql and start a new insert query
-                write_buffer()
-                output_buffer.append(sql)
-                sql_len = 0
-
-            items = []
-            n += 1
-
-            # halt if the specified limit has been hit
-            if n == args.limit:
-                break
-
-        elem.clear()  # discard element and recover memory
-
-write_buffer()  # write rest of the buffer to file
-show_stats()
+		self.output.write(self.sql_insert + 'VALUES\n' + ', \n'.join(self.output_buffer) + ';\n\n')
+		self.output_buffer = []
+		self.num_insert += 1
