@@ -28,7 +28,7 @@ setup(
 		"Programming Language :: Python :: 2.6",
 		"Programming Language :: Python :: 2.7",
 		"Topic :: Software Development :: Libraries :: Python Modules",
-		"Topic :: Database",
+		"Topic :: Text Processing :: Markup :: XML",
 		"Topic :: Software Development :: Libraries"
 	]
 )
