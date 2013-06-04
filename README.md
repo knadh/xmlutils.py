@@ -1,162 +1,138 @@
 # xmlutils.py
-A set of Python scripts for processing xml files serially, 
-namely converting them to other formats (SQL, CSV, JSON). The scripts use ElementTree.iterparse() 
-to iterate through nodes in an XML file, thus not needing to load the whole DOM into memory. 
-The scripts can be used to churn through large XML files (albeit taking long :P) without 
-memory hiccups. (Note: The XML files are NOT validated by the scripts.)
+xmlutils.py is a set of Python utilities for processing xml files serially, namely converting 
+them to other formats (SQL, CSV, JSON). The scripts use ElementTree.iterparse() to iterate 
+through nodes in an XML file, thus not needing to load the whole DOM into memory. 
+The scripts can be used to churn through large XML files (albeit taking long :P) without memory hiccups.
+
+Blind conversion of XML to CSV and SQL is not recommended.
+It only works if the structure of the XML document is simple (flat). 
+On the other hand, xml2json supports complex XML documents with multiple nested hierarchies.
+Lastly, the XML files are not validated at the time of conversion.
+
 
 Kailash Nadh, October 2011
 
 License:	MIT License
 
-Documentation: http://kailashnadh.name/code/xmlutils.py
+Documentation: http://nadh.in/code/xmlutils.py
 
-## xml2csv.py
+Pypi: https://pypi.python.org/pypi/xmlutils
+
+
+#Installation
+With pip or easy_install
+
+```pip install xmlutils``` or ```easy_install xmlutils```
+
+Or from the source
+
+```python setup.py install```
+
+#Commandline utilities
+
+##xml2csv
 Convert an XML document to a CSV file.
 
 <pre>
-python xml2csv.py --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
+xml2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
 </pre>
 
-### options
-<table>
-	<tbody>
-		<tr>
-			<td>--input</td>
-			<td>
-				Input XML document's filename*
-			</td>
-		</tr>
-		<tr>
-			<td>--output</td>
-			<td>
-				Output CSV file's filename*
-			</td>
-		</tr>
-		<tr>
-			<td>--tag</td>
-			<td>
-				The tag of the node that represents a single record (Eg: item, record)*
-			</td>
-		</tr>
-		<tr>
-			<td>--delimiter</td>
-			<td>
-				Delimiter for seperating items in a row. Default is , (a comma followed by a space)
-			</td>
-		</tr>
-		<tr>
-			<td>--ignore</td>
-			<td>
-				A space separated list of element tags in the XML document to ignore.
-			</td>
-		</tr>
-		<tr>
-			<td>--no-header</td>
-			<td>
-				Skip adding the CSV header (list of fields) to the first line; Default is False.
-			</td>
-		</tr>
-		<tr>
-			<td>--encoding</td>
-			<td>
-				Character encoding of the document. Default is utf-8
-			</td>
-		</tr>
-		<tr>
-			<td>--limit</td>
-			<td>
-				Limit the number of records to be processed from the document to a particular number. 
-				Default is no limit (-1)
-			</td>
-		</tr>
-		<tr>
-			<td>--buffer</td>
-			<td>
-				The number of records to be kept in memory before it is written to the output CSV file. Helps 
-				reduce the number of disk writes. Default is 1000.
-			</td>
-		</tr>
-	</tbody>
-</table>
+######Arguments
+```
+--input 	Input XML document's filename*
+--output 	Output CSV file's filename*
+--tag 		The tag of the node that represents a single record (Eg: item, record)*
+--delimiter 	Delimiter for seperating items in a row. Default is , (a comma followed by a space)
+--ignore 	A space separated list of element tags in the XML document to ignore.
+--header 	Whether to print the CSV header (list of fields) in the first line; 1=yes, 0=no. Default is 1.
+--encoding 	Character encoding of the document. Default is utf-8
+--limit 	Limit the number of records to be processed from the document to a particular number. Default is no limit (-1)
+--buffer 	The number of records to be kept in memory before it is written to the output CSV file. Helps reduce the number 
+of disk writes. Default is 1000. 
+```
 
-##xml2sql.py
+##xml2sql
 Convert an XML document to an SQL file.
 
-<pre>
-python xml2sql.py --input "samples/fruits.xml" --output "samples/fruits.sql" --tag "item" --table "myfruits"
-</pre>
+```xml2sql --input "samples/fruits.xml" --output "samples/fruits.sql" --tag "item" --table "myfruits"```
 
-### options
-<table>
-	<tbody>
-		<tr>
-			<td>--input</td>
-			<td>
-				Input XML document's filename*
-			</td>
-		</tr>
-		<tr>
-			<td>--output</td>
-			<td>
-				Output SQL file's filename*
-			</td>
-		</tr>
-		<tr>
-			<td>--tag</td>
-			<td>
-				The tag of the node that represents a single record (Eg: item, record)*
-			</td>
-		</tr>
-		<tr>
-			<td>--ignore</td>
-			<td>
-				A space separated list of element tags in the XML document to ignore.
-			</td>
-		</tr>
-		<tr>
-			<td>--encoding</td>
-			<td>
-				Character encoding of the document. Default is utf-8
-			</td>
-		</tr>
-		<tr>
-			<td>--limit</td>
-			<td>
-				Limit the number of records to be processed from the document to a particular number. 
-				Default is no limit (-1)
-			</td>
-		</tr>
-		<tr>
-			<td>--packet</td>
-			<td>
-				Maximum size of a single INSERT query in MBs. Default is 8. Set based on MySQL's 
-				max_allowed_packet configuration.
-			</td>
-		</tr>
-	</tbody>
-</table>
+######Arguments
+```
+tag 	-- the record tag. eg: item
+table	-- table name
+ignore	-- list of tags to ignore
+limit	-- maximum number of records to process
+packet	-- maximum size of an insert query in MB (MySQL's max_allowed_packet)
 
-##xml2json.py
+Returns:
+{	num: number of records converted,
+	num_insert: number of sql insert statements generated
+}
+```
+
+##xml2json
 Convert XML to JSON.
+xml2json supports hierarchies nested to any number of levels.
 
-Unlike xml2sql and xml2csv, xml2py is not a stand alone utility, but a library. Moreover, it
-supports hierarchies nested to any number of levels.
+```xml2json --input "samples/fruits.xml" --output "samples/fruits.sql"```
 
-### usage
+#Modules
+
+##xmlutils.xml2sql
 ```python
-from xml2json import *
+from xmlutils.xml2sql import xml2sql
 
-# given an ElementTree Element, return its json
-json = xml2json(elem)
+converter = xml2sql("samples/fruits.xml", "samples/fruits.sql", encoding="utf-8")
+converter.convert(tag="item", table="table")
+```
 
+######Arguments
+```
+tag 	-- the record tag. eg: item
+table	-- table name
+ignore	-- list of tags to ignore
+limit	-- maximum number of records to process
+packet	-- maximum size of an insert query in MB (MySQL's max_allowed_packet)
 
-# __________ Working with files
-# xml2json_file(input_filename, output_filename[optional], prettyprint[True or False], file_encoding[default: utf-8])
+Returns:
+{	num: number of records converted,
+	num_insert: number of sql insert statements generated
+}
+```
 
-# read an xml file and return json
-json = xml2json_file("samples/fruits.xml")
+##xmlutils.xml2csv
+```python
+from xmlutils.xml2csv import xml2csv
 
-# read an xml file and write json to a file
-xml2json_file("samples/fruits.xml", "samples/fruits.json")
+converter = xml2csv("samples/fruits.xml", "samples/fruits.sql", encoding="utf-8")
+converter.convert(tag="item")
+```
+
+######Arguments
+```
+tag	-- the record tag. eg: item
+delimiter -- csv field delimiter
+ignore	-- list of tags to ignore
+limit	-- maximum number of records to process
+buffer	-- number of records to keep in buffer before writing to disk
+
+Returns:
+number of records converted
+```
+
+##xmlutils.xml2json
+```python
+from xmlutils.xml2json import xml2json
+
+converter = xml2json("samples/fruits.xml", "samples/fruits.sql", encoding="utf-8")
+converter.convert()
+
+# to get a json string
+converter = xml2json("samples/fruits.xml", encoding="utf-8")
+print converter.get_json()
+```
+
+######Arguments
+```
+pretty	-- pretty print?
 ```
