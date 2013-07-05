@@ -59,16 +59,11 @@ xml2sql --input "samples/fruits.xml" --output "samples/fruits.sql" --tag "item" 
 
 ######Arguments
 ```
-tag 	-- the record tag. eg: item
-table	-- table name
-ignore	-- list of tags to ignore
-limit	-- maximum number of records to process
-packet	-- maximum size of an insert query in MB (MySQL's max_allowed_packet)
-
-Returns:
-{	num: number of records converted,
-	num_insert: number of sql insert statements generated
-}
+--tag           the record tag. eg: item
+--table         table name
+--ignore        list of tags to ignore
+--limit         maximum number of records to process
+--packet        maximum size of an insert query in MB (MySQL's max_allowed_packet)
 ```
 
 ##xml2json
