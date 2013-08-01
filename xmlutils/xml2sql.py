@@ -12,11 +12,6 @@ import xml.etree.ElementTree as et
 
 class xml2sql:
 
-	output_buffer = []
-	sql_insert = None
-	output = None
-	num_insert = 0
-
 	def __init__(self, input_file, output_file, encoding='utf-8'):
 		"""Initialize the class with the paths to the input xml file
 		and the output sql file
@@ -26,6 +21,11 @@ class xml2sql:
 		output_file -- output sql filename
 		encoding -- character encoding
 		"""
+
+		self.output_buffer = []
+		self.sql_insert = None
+		self.output = None
+		self.num_insert = 0
 
 		# open the xml file for iteration
 		self.context = et.iterparse(input_file, events=("start", "end"))

@@ -12,6 +12,7 @@ import xml.etree.ElementTree as et
 import json
 
 class xml2json:
+
 	def __init__(self, input_file, output_file = None, encoding='utf-8'):
 		"""Initialize the class with the paths to the input xml file
 		and the output sql file

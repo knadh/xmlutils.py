@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
 	name="xmlutils",
-	version="0.93",
+	version="0.94",
 	description="A set of utilities for processing XML documents and converting to other formats",
 	author="Kailash Nadh",
 	author_email="kailash.nadh@gmail.com",

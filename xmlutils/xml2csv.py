@@ -11,8 +11,6 @@ import codecs
 import xml.etree.ElementTree as et
 
 class xml2csv:
-	output_buffer = []
-	output = None
 
 	def __init__(self, input_file, output_file, encoding='utf-8'):
 		"""Initialize the class with the paths to the input xml file
@@ -23,6 +21,9 @@ class xml2csv:
 		output_file -- output sql filename
 		encoding -- character encoding
 		"""
+
+		self.output_buffer = []
+		self.output = None
 
 		# open the xml file for iteration
 		self.context = et.iterparse(input_file, events=("start", "end"))
