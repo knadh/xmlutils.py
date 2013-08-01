@@ -100,7 +100,7 @@ Returns:
 ```python
 from xmlutils.xml2csv import xml2csv
 
-converter = xml2csv("samples/fruits.xml", "samples/fruits.sql", encoding="utf-8")
+converter = xml2csv("samples/fruits.xml", "samples/fruits.csv", encoding="utf-8")
 converter.convert(tag="item")
 ```
 
