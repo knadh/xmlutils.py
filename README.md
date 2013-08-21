@@ -70,7 +70,7 @@ xml2sql --input "samples/fruits.xml" --output "samples/fruits.sql" --tag "item" 
 Convert XML to JSON.
 xml2json supports hierarchies nested to any number of levels.
 
-```xml2json --input "samples/fruits.xml" --output "samples/fruits.sql"```
+```xml2json --input "samples/fruits.xml" --output "samples/fruits.json"```
 
 #Modules
 
