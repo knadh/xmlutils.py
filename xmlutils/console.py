@@ -68,15 +68,15 @@ def run_xml2csv():
 
 
 def run_xml2json():
-	print """xml2sql by Kailash Nadh (http://nadh.in)
+	print """xml2json by Kailash Nadh (http://nadh.in)
 	--help for help
 
 	"""
 
 	# parse arguments
-	parser = argparse.ArgumentParser(description='Convert an xml file to sql.')
+	parser = argparse.ArgumentParser(description='Convert an xml file to json.')
 	parser.add_argument('--input', type=file, dest='input_file', required=True, help='input xml filename')
-	parser.add_argument('--output', dest='output_file', required=True, help='output sql filename')
+	parser.add_argument('--output', dest='output_file', required=True, help='output json filename')
 	parser.add_argument('--pretty', dest='pretty', required=False, default=False, action='store_true', \
 						help='pretty print? (default=False)')
 	parser.add_argument('--encoding', dest='encoding', default='utf-8', help='character encoding (default=utf-8)')

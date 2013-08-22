@@ -14,11 +14,11 @@ class xml2csv:
 
 	def __init__(self, input_file, output_file, encoding='utf-8'):
 		"""Initialize the class with the paths to the input xml file
-		and the output sql file
+		and the output csv file
 
 		Keyword arguments:
 		input_file -- input xml filename
-		output_file -- output sql filename
+		output_file -- output csv filename
 		encoding -- character encoding
 		"""
 
