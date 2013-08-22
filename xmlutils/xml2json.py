@@ -15,11 +15,11 @@ class xml2json:
 
 	def __init__(self, input_file, output_file = None, encoding='utf-8'):
 		"""Initialize the class with the paths to the input xml file
-		and the output sql file
+		and the output json file
 
 		Keyword arguments:
 		input_file -- input xml filename
-		output_file -- output sql filename
+		output_file -- output json filename
 		encoding -- character encoding
 		"""
 
