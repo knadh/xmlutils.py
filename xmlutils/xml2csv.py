@@ -90,7 +90,7 @@ class xml2csv:
 				elif elem.tag == tag and len(items) > 0:
 					# csv header (element tag names)
 					if header_line and not tagged:
-						self.output.write('#' + delimiter.join(header_line) + '\n')
+						self.output.write(delimiter.join(header_line) + '\n')
 					tagged = True
 
 					# send the csv to buffer
