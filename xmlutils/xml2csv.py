@@ -84,7 +84,7 @@ class xml2csv:
 						header_line.append(field_name)  # add field name to csv header
 						# remove current tag from the tag name chain
 						field_name = field_name.rpartition('_' + elem.tag)[0]
-					items.append('' if elem.text is None else elem.text.strip().replace('"', r'\"'))
+					items.append('' if elem.text is None else elem.text.strip().replace('"', r'""'))
 
 				# end of traversing the record tag
 				elif elem.tag == tag and len(items) > 0:
