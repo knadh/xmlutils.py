@@ -42,7 +42,7 @@ xml2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
 --input 	Input XML document's filename*
 --output 	Output CSV file's filename*
 --tag 		The tag of the node that represents a single record (Eg: item, record)*
---delimiter 	Delimiter for seperating items in a row. Default is , (a comma followed by a space)
+--delimiter 	Delimiter for seperating items in a row. Default is , (a comma)
 --ignore 	A space separated list of element tags in the XML document to ignore.
 --header 	Whether to print the CSV header (list of fields) in the first line; 1=yes, 0=no. Default is 1.
 --encoding 	Character encoding of the document. Default is utf-8
