@@ -50,9 +50,9 @@ def run_xml2csv():
 	parser.add_argument('--input', dest='input_file', required=True, help='input xml filename')
 	parser.add_argument('--output', dest='output_file', required=True, help='output csv filename')
 	parser.add_argument('--tag', dest='tag', required=True, help='the record tag. eg: item')
-	parser.add_argument('--delimiter', dest='delimiter', default=',', help='delimiter character. (default=, comma-space)')
+	parser.add_argument('--delimiter', dest='delimiter', default=',', help='delimiter character. (default=,)')
 	parser.add_argument('--ignore', dest='ignore', default='', nargs='+', help='list of tags to ignore')
-	parser.add_argument('--header', dest='header', action='store_false', default=True, help='print csv header (default=True)')
+	parser.add_argument('--noheader', dest='noheader', action='store_true', help='exclude csv header (default=False)')
 	parser.add_argument('--encoding', dest='encoding', default='utf-8', help='character encoding (default=utf-8)')
 	parser.add_argument('--limit', type=int, dest='limit', default=-1, help='maximum number of records to process')
 	parser.add_argument('--buffer_size', type=int, dest='buffer_size', default='1000',
@@ -62,7 +62,7 @@ def run_xml2csv():
 
 	converter = xml2csv(args.input_file, args.output_file, args.encoding)
 	num = converter.convert(tag=args.tag, delimiter=args.delimiter, ignore=args.ignore,
-							header=args.header, limit=args.limit, buffer_size=args.buffer_size)
+							noheader=args.noheader, limit=args.limit, buffer_size=args.buffer_size)
 
 	print "\n\nWrote", num, "records to", args.output_file
 

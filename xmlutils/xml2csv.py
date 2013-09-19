@@ -36,7 +36,7 @@ class xml2csv:
 			raise
 
 
-	def convert(self, tag="item", delimiter=",", ignore=[], header=True,
+	def convert(self, tag="item", delimiter=",", ignore=[], noheader=False,
 				limit=-1, buffer_size=1000):
 
 		"""Convert the XML file to SQL file
@@ -69,7 +69,7 @@ class xml2csv:
 			# if elem is an unignored child node of the record tag, it should be written to buffer
 			should_write = elem.tag != tag and started and elem.tag not in ignore
 			# and if a header is required and if there isn't one
-			should_tag = not tagged and should_write and header
+			should_tag = not tagged and should_write and not noheader
 
 			if event == 'start':
 				if elem.tag == tag and not started:

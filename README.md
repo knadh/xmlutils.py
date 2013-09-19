@@ -1,8 +1,8 @@
 # xmlutils.py
-xmlutils.py is a set of Python utilities for processing xml files serially, 
-namely converting them to other formats (SQL, CSV, JSON). The scripts use 
-ElementTree.iterparse() to iterate through nodes in an XML file, thus not 
-needing to load the whole DOM into memory. The scripts can be used to churn 
+xmlutils.py is a set of Python utilities for processing xml files serially  
+for converting them to various formats (SQL, CSV, JSON). The scripts use 
+ElementTree.iterparse() to iterate through nodes in an XML document, thus not 
+needing to load the entire DOM into memory. The scripts can be used to churn 
 through large XML files (albeit taking long :P) without memory hiccups.
 
 Blind conversion of XML to CSV and SQL is not recommended.
@@ -43,11 +43,11 @@ xml2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
 --output 	Output CSV file's filename*
 --tag 		The tag of the node that represents a single record (Eg: item, record)*
 --delimiter 	Delimiter for seperating items in a row. Default is , (a comma followed by a space)
---ignore 	A space separated list of element tags in the XML document to ignore.
---header 	Whether to print the CSV header (list of fields) in the first line; 1=yes, 0=no. Default is 1.
+--ignore 	A space separated list of element tags in the XML document to ignore
+--noheader 	Exclude CSV fields header (first line). Off by default
 --encoding 	Character encoding of the document. Default is utf-8
 --limit 	Limit the number of records to be processed from the document to a particular number. Default is no limit (-1)
---buffer 	The number of records to be kept in memory before it is written to the output CSV file. Helps reduce the number of disk writes. Default is 1000. 
+--buffer 	The number of records to be kept in memory before it is written to the output CSV file. Helps reduce the number of disk writes. Default is 1000
 ```
 
 ##xml2sql
