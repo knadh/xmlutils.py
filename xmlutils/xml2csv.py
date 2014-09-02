@@ -109,6 +109,7 @@ class xml2csv:
 				elem.clear()  # discard element and recover memory
 
 		self._write_buffer()  # write rest of the buffer to file
+		self.output.close()
 
 		return n
 
