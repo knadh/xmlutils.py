@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+<ss:Table ss:ExpandedColumnCount="11" ss:FullColumns="1" ss:ExpandedRowCount="28" ss:FullRows="1">
+<ss:Row>
+<ss:Cell ss:StyleID="HeaderStyle">
+  <ss:Data ss:Type="String">Header 1</ss:Data>
+</ss:Cell>
+<ss:Cell ss:StyleID="HeaderStyle">
+  <ss:Data ss:Type="String">Header 2</ss:Data>
+</ss:Cell>
+</ss:Row>
+<ss:Row>
+<ss:Cell>
+  <ss:Data ss:Type="String">Value R1C1</ss:Data>
+</ss:Cell>
+<ss:Cell>
+  <ss:Data ss:Type="String">Value R1C2</ss:Data>
+</ss:Cell>
+</ss:Row>
+<ss:Row>
+<ss:Cell>
+  <ss:Data ss:Type="String">Value R2C1</ss:Data>
+</ss:Cell>
+<ss:Cell>
+  <ss:Data ss:Type="String">Value R2C2</ss:Data>
+</ss:Cell>
+</ss:Row>
+</ss:Table>
+</ss:Workbook>

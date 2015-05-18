@@ -5,6 +5,9 @@ ElementTree.iterparse() to iterate through nodes in an XML document, thus not
 needing to load the entire DOM into memory. The scripts can be used to churn 
 through large XML files (albeit taking long :P) without memory hiccups.
 
+Simple table-representing XMLs can be converted to CSV using xmltable2csv. It assumes each entry is encapsulated
+in some tag, and successfuly tested on some XLSX files.
+
 Blind conversion of XML to CSV and SQL is not recommended.
 It only works if the structure of the XML document is simple (flat). 
 On the other hand, xml2json supports complex XML documents with multiple
@@ -12,6 +15,7 @@ nested hierarchies. Lastly, the XML files are not validated at the time of conve
 
 
 - Kailash Nadh, June 2013
+- Yigal Lazarev, May 2015
 - License: MIT License
 - Documentation: [http://nadh.in/code/xmlutils.py](http://nadh.in/code/xmlutils.py)
 - Pypi: [https://pypi.python.org/pypi/xmlutils](https://pypi.python.org/pypi/xmlutils)
@@ -48,6 +52,25 @@ xml2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
 --encoding 	Character encoding of the document. Default is utf-8
 --limit 	Limit the number of records to be processed from the document to a particular number. Default is no limit (-1)
 --buffer 	The number of records to be kept in memory before it is written to the output CSV file. Helps reduce the number of disk writes. Default is 1000
+```
+
+##xmltable2csv
+Convert an XML table to a CSV file.
+
+```
+xmltable2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "Data"
+```
+
+######Arguments
+```
+--input         Input XML table's filename*
+--output        Output CSV file's filename*
+--tag           The tag of the node that represents a single record (Eg: Data, record)*
+--delimiter     Delimiter for seperating items in a row. Default is , (a comma followed by a space)
+--header        Whether to print the header (first row of records in the XML) in the first line; 1=yes, 0=no. Default is 1.
+--encoding      Character encoding of the document. Default is utf-8
+--limit         Limit the number of records to be processed from the document to a particular number. Default is no limit (-1)
+--buffer        The number of records to be kept in memory before it is written to the output CSV file. Helps reduce the number of disk writes. Default is 1000.
 ```
 
 ##xml2sql
