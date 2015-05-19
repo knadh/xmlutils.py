@@ -16,7 +16,8 @@ setup(
 		'console_scripts': [
 			'xml2sql = xmlutils.console:run_xml2sql',
 			'xml2csv = xmlutils.console:run_xml2csv',
-			'xml2json = xmlutils.console:run_xml2json'
+			'xml2json = xmlutils.console:run_xml2json',
+			'xmltable2csv = xmlutils.console:run_xmltable2csv'
 		],
 	},
 	classifiers=[
