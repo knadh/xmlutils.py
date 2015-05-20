@@ -70,7 +70,7 @@ def run_xml2csv():
 
 
 def run_xmltable2csv():
-	print """xmls2csv by Yigal Lazarev (http://yig.al)
+	print """xmltable2csv by Yigal Lazarev (http://yig.al)
 	--help for help
 
 	"""

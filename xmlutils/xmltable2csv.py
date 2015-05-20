@@ -1,7 +1,7 @@
 ﻿"""
-    xml2csv.py
-    Kailash Nadh, http://nadh.in
-    October 2011
+    xmltable2csv.py
+    Yigal Lazarev, http://yig.al
+    May 2015
     
     License:        MIT License
     Documentation:    http://nadh.in/code/xmlutils.py
