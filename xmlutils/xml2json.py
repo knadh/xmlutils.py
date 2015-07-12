@@ -98,6 +98,9 @@ class xml2json:
 			if elem.text:
 				val = elem.text.strip()
 				val = val if len(val) > 0 else None
+			elif elem.attrib:
+				val = elem.attrib
+				val = val if len(val) > 0 else None
 
 			block[elem.tag] = val 
 		
