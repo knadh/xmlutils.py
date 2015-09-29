@@ -1,0 +1,378 @@
+{
+    "fruits": {
+        "item": [
+            {
+                "price": "4",
+                "quantity": "133",
+                "id": "1000",
+                "name": "Apple"
+            },
+            {
+                "price": "5",
+                "quantity": "175",
+                "id": "1001",
+                "name": "Apricot"
+            },
+            {
+                "price": "5",
+                "quantity": "182",
+                "id": "1002",
+                "name": "Avocado"
+            },
+            {
+                "price": "5",
+                "quantity": "187",
+                "id": "1003",
+                "name": "Banana"
+            },
+            {
+                "price": "5",
+                "quantity": "160",
+                "id": "1004",
+                "name": "Bilberry"
+            },
+            {
+                "price": "4",
+                "quantity": "178",
+                "id": "1005",
+                "name": "Blackberry"
+            },
+            {
+                "price": "5",
+                "quantity": "102",
+                "id": "1006",
+                "name": "Blackcurrant"
+            },
+            {
+                "price": "6",
+                "quantity": "156",
+                "id": "1007",
+                "name": "Blueberry"
+            },
+            {
+                "price": "5",
+                "quantity": "194",
+                "id": "1008",
+                "name": "Currant"
+            },
+            {
+                "price": "5",
+                "quantity": "182",
+                "id": "1009",
+                "name": "Cherry"
+            },
+            {
+                "price": "3",
+                "quantity": "169",
+                "id": "1010",
+                "name": "Cherimoya"
+            },
+            {
+                "price": "3",
+                "quantity": "165",
+                "id": "1011",
+                "name": "Clementine"
+            },
+            {
+                "price": "6",
+                "quantity": "112",
+                "id": "1012",
+                "name": "Date"
+            },
+            {
+                "price": "1",
+                "quantity": "164",
+                "id": "1013",
+                "name": "Damson"
+            },
+            {
+                "price": "2",
+                "quantity": "157",
+                "id": "1014",
+                "name": "Durian"
+            },
+            {
+                "price": "6",
+                "quantity": "189",
+                "id": "1015",
+                "name": "Eggplant"
+            },
+            {
+                "price": "3",
+                "quantity": "189",
+                "id": "1016",
+                "name": "Elderberry"
+            },
+            {
+                "price": "2",
+                "quantity": "198",
+                "id": "1017",
+                "name": "Feijoa"
+            },
+            {
+                "price": "2",
+                "quantity": "141",
+                "id": "1018",
+                "name": "Gooseberry"
+            },
+            {
+                "price": "2",
+                "quantity": "101",
+                "id": "1019",
+                "name": "Grape"
+            },
+            {
+                "price": "5",
+                "quantity": "199",
+                "id": "1020",
+                "name": "Grapefruit"
+            },
+            {
+                "price": "1",
+                "quantity": "160",
+                "id": "1021",
+                "name": "Guava"
+            },
+            {
+                "price": "6",
+                "quantity": "197",
+                "id": "1022",
+                "name": "Huckleberry"
+            },
+            {
+                "price": "6",
+                "quantity": "181",
+                "id": "1023",
+                "name": "Jackfruit"
+            },
+            {
+                "price": "6",
+                "quantity": "117",
+                "id": "1024",
+                "name": "Jambul"
+            },
+            {
+                "price": "1",
+                "quantity": "123",
+                "id": "1025",
+                "name": "Kiwi fruit"
+            },
+            {
+                "price": "2",
+                "quantity": "198",
+                "id": "1026",
+                "name": "Kumquat"
+            },
+            {
+                "price": "6",
+                "quantity": "199",
+                "id": "1027",
+                "name": "Legume"
+            },
+            {
+                "price": "3",
+                "quantity": "120",
+                "id": "1028",
+                "name": "Lemon"
+            },
+            {
+                "price": "3",
+                "quantity": "165",
+                "id": "1029",
+                "name": "Lime"
+            },
+            {
+                "price": "6",
+                "quantity": "120",
+                "id": "1030",
+                "name": "Lychee"
+            },
+            {
+                "price": "6",
+                "quantity": "131",
+                "id": "1031",
+                "name": "Mango"
+            },
+            {
+                "price": "1",
+                "quantity": "181",
+                "id": "1032",
+                "name": "Mangostine"
+            },
+            {
+                "price": "4",
+                "quantity": "159",
+                "id": "1033",
+                "name": "Melon"
+            },
+            {
+                "price": "4",
+                "quantity": "138",
+                "id": "1034",
+                "name": "Cantaloupe"
+            },
+            {
+                "price": "4",
+                "quantity": "155",
+                "id": "1035",
+                "name": "Honeydew melon"
+            },
+            {
+                "price": "5",
+                "quantity": "176",
+                "id": "1036",
+                "name": "Watermelon"
+            },
+            {
+                "price": "2",
+                "quantity": "180",
+                "id": "1037",
+                "name": "Rock melon"
+            },
+            {
+                "price": "1",
+                "quantity": "128",
+                "id": "1038",
+                "name": "Nectarine"
+            },
+            {
+                "price": "6",
+                "quantity": "142",
+                "id": "1039",
+                "name": "Orange"
+            },
+            {
+                "price": "6",
+                "quantity": "179",
+                "id": "1040",
+                "name": "Peach"
+            },
+            {
+                "price": "3",
+                "quantity": "102",
+                "id": "1041",
+                "name": "Pear"
+            },
+            {
+                "price": "1",
+                "quantity": "164",
+                "id": "1042",
+                "name": "Williams pear or Bartlett pear"
+            },
+            {
+                "price": "2",
+                "quantity": "170",
+                "id": "1043",
+                "name": "Pitaya"
+            },
+            {
+                "price": "5",
+                "quantity": "166",
+                "id": "1044",
+                "name": "Physalis"
+            },
+            {
+                "price": "4",
+                "quantity": "103",
+                "id": "1045",
+                "name": "Plum/prune (dried plum)"
+            },
+            {
+                "price": "3",
+                "quantity": "120",
+                "id": "1046",
+                "name": "Pineapple"
+            },
+            {
+                "price": "5",
+                "quantity": "112",
+                "id": "1047",
+                "name": "Pomegranate"
+            },
+            {
+                "price": "4",
+                "quantity": "111",
+                "id": "1048",
+                "name": "Raisin"
+            },
+            {
+                "price": "5",
+                "quantity": "156",
+                "id": "1049",
+                "name": "Raspberry"
+            },
+            {
+                "price": "6",
+                "quantity": "173",
+                "id": "1050",
+                "name": "Western raspberry (blackcap)"
+            },
+            {
+                "price": "6",
+                "quantity": "145",
+                "id": "1051",
+                "name": "Rambutan"
+            },
+            {
+                "price": "3",
+                "quantity": "190",
+                "id": "1052",
+                "name": "Redcurrant"
+            },
+            {
+                "price": "3",
+                "quantity": "137",
+                "id": "1053",
+                "name": "Salal berry"
+            },
+            {
+                "price": "1",
+                "quantity": "197",
+                "id": "1054",
+                "name": "Satsuma"
+            },
+            {
+                "price": "4",
+                "quantity": "142",
+                "id": "1055",
+                "name": "Star fruit"
+            },
+            {
+                "price": "6",
+                "quantity": "178",
+                "id": "1056",
+                "name": "Strawberry"
+            },
+            {
+                "price": "4",
+                "quantity": "119",
+                "id": "1057",
+                "name": "Tangerine"
+            },
+            {
+                "price": "6",
+                "quantity": "167",
+                "id": "1058",
+                "name": "Tomato"
+            },
+            {
+                "price": "4",
+                "quantity": "179",
+                "id": "1059",
+                "name": "Ugli fruit"
+            },
+            {
+                "price": "6",
+                "quantity": "149",
+                "id": "1060",
+                "name": "Watermelon"
+            },
+            {
+                "price": "5",
+                "quantity": "180",
+                "id": "1061",
+                "name": "Ziziphus mauritiana"
+            }
+        ]
+    }
+}

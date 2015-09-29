@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fruits>
+	<item>
+		<id>1000</id>
+		<name>Apple</name>
+		<price>4</price>
+		<quantity>133</quantity>
+	</item>	
+	<item>
+
+		<id>1001</id>
+		<name>Apricot</name>
+		<price>5</price>
+		<quantity>175</quantity>
+	</item>	
+	<item>
+		<id>1002</id>
+
+		<name>Avocado</name>
+		<price>5</price>
+		<quantity>182</quantity>
+	</item>	
+	<item>
+		<id>1003</id>
+		<name>Banana</name>
+
+		<price>5</price>
+		<quantity>187</quantity>
+	</item>	
+	<item>
+		<id>1004</id>
+		<name>Bilberry</name>
+		<price>5</price>
+
+		<quantity>160</quantity>
+	</item>	
+	<item>
+		<id>1005</id>
+		<name>Blackberry</name>
+		<price>4</price>
+		<quantity>178</quantity>
+
+	</item>	
+	<item>
+		<id>1006</id>
+		<name>Blackcurrant</name>
+		<price>5</price>
+		<quantity>102</quantity>
+	</item>	
+	<item>
+
+		<id>1007</id>
+		<name>Blueberry</name>
+		<price>6</price>
+		<quantity>156</quantity>
+	</item>	
+	<item>
+		<id>1008</id>
+
+		<name>Currant</name>
+		<price>5</price>
+		<quantity>194</quantity>
+	</item>	
+	<item>
+		<id>1009</id>
+		<name>Cherry</name>
+
+		<price>5</price>
+		<quantity>182</quantity>
+	</item>	
+	<item>
+		<id>1010</id>
+		<name>Cherimoya</name>
+		<price>3</price>
+
+		<quantity>169</quantity>
+	</item>	
+	<item>
+		<id>1011</id>
+		<name>Clementine</name>
+		<price>3</price>
+		<quantity>165</quantity>
+
+	</item>	
+	<item>
+		<id>1012</id>
+		<name>Date</name>
+		<price>6</price>
+		<quantity>112</quantity>
+	</item>	
+	<item>
+
+		<id>1013</id>
+		<name>Damson</name>
+		<price>1</price>
+		<quantity>164</quantity>
+	</item>	
+	<item>
+		<id>1014</id>
+
+		<name>Durian</name>
+		<price>2</price>
+		<quantity>157</quantity>
+	</item>	
+	<item>
+		<id>1015</id>
+		<name>Eggplant</name>
+
+		<price>6</price>
+		<quantity>189</quantity>
+	</item>	
+	<item>
+		<id>1016</id>
+		<name>Elderberry</name>
+		<price>3</price>
+
+		<quantity>189</quantity>
+	</item>	
+	<item>
+		<id>1017</id>
+		<name>Feijoa</name>
+		<price>2</price>
+		<quantity>198</quantity>
+
+	</item>	
+	<item>
+		<id>1018</id>
+		<name>Gooseberry</name>
+		<price>2</price>
+		<quantity>141</quantity>
+	</item>	
+	<item>
+
+		<id>1019</id>
+		<name>Grape</name>
+		<price>2</price>
+		<quantity>101</quantity>
+	</item>	
+	<item>
+		<id>1020</id>
+
+		<name>Grapefruit</name>
+		<price>5</price>
+		<quantity>199</quantity>
+	</item>	
+	<item>
+		<id>1021</id>
+		<name>Guava</name>
+
+		<price>1</price>
+		<quantity>160</quantity>
+	</item>	
+	<item>
+		<id>1022</id>
+		<name>Huckleberry</name>
+		<price>6</price>
+
+		<quantity>197</quantity>
+	</item>	
+	<item>
+		<id>1023</id>
+		<name>Jackfruit</name>
+		<price>6</price>
+		<quantity>181</quantity>
+
+	</item>	
+	<item>
+		<id>1024</id>
+		<name>Jambul</name>
+		<price>6</price>
+		<quantity>117</quantity>
+	</item>	
+	<item>
+
+		<id>1025</id>
+		<name>Kiwi fruit</name>
+		<price>1</price>
+		<quantity>123</quantity>
+	</item>	
+	<item>
+		<id>1026</id>
+
+		<name>Kumquat</name>
+		<price>2</price>
+		<quantity>198</quantity>
+	</item>	
+	<item>
+		<id>1027</id>
+		<name>Legume</name>
+
+		<price>6</price>
+		<quantity>199</quantity>
+	</item>	
+	<item>
+		<id>1028</id>
+		<name>Lemon</name>
+		<price>3</price>
+
+		<quantity>120</quantity>
+	</item>	
+	<item>
+		<id>1029</id>
+		<name>Lime</name>
+		<price>3</price>
+		<quantity>165</quantity>
+
+	</item>	
+	<item>
+		<id>1030</id>
+		<name>Lychee</name>
+		<price>6</price>
+		<quantity>120</quantity>
+	</item>	
+	<item>
+
+		<id>1031</id>
+		<name>Mango</name>
+		<price>6</price>
+		<quantity>131</quantity>
+	</item>	
+	<item>
+		<id>1032</id>
+
+		<name>Mangostine</name>
+		<price>1</price>
+		<quantity>181</quantity>
+	</item>	
+	<item>
+		<id>1033</id>
+		<name>Melon</name>
+
+		<price>4</price>
+		<quantity>159</quantity>
+	</item>	
+	<item>
+		<id>1034</id>
+		<name>Cantaloupe</name>
+		<price>4</price>
+
+		<quantity>138</quantity>
+	</item>	
+	<item>
+		<id>1035</id>
+		<name>Honeydew melon</name>
+		<price>4</price>
+		<quantity>155</quantity>
+
+	</item>	
+	<item>
+		<id>1036</id>
+		<name>Watermelon</name>
+		<price>5</price>
+		<quantity>176</quantity>
+	</item>	
+	<item>
+
+		<id>1037</id>
+		<name>Rock melon</name>
+		<price>2</price>
+		<quantity>180</quantity>
+	</item>	
+	<item>
+		<id>1038</id>
+
+		<name>Nectarine</name>
+		<price>1</price>
+		<quantity>128</quantity>
+	</item>	
+	<item>
+		<id>1039</id>
+		<name>Orange</name>
+
+		<price>6</price>
+		<quantity>142</quantity>
+	</item>	
+	<item>
+		<id>1040</id>
+		<name>Peach</name>
+		<price>6</price>
+
+		<quantity>179</quantity>
+	</item>	
+	<item>
+		<id>1041</id>
+		<name>Pear</name>
+		<price>3</price>
+		<quantity>102</quantity>
+
+	</item>	
+	<item>
+		<id>1042</id>
+		<name>Williams pear or Bartlett pear</name>
+		<price>1</price>
+		<quantity>164</quantity>
+	</item>	
+	<item>
+
+		<id>1043</id>
+		<name>Pitaya</name>
+		<price>2</price>
+		<quantity>170</quantity>
+	</item>	
+	<item>
+		<id>1044</id>
+
+		<name>Physalis</name>
+		<price>5</price>
+		<quantity>166</quantity>
+	</item>	
+	<item>
+		<id>1045</id>
+		<name>Plum/prune (dried plum)</name>
+
+		<price>4</price>
+		<quantity>103</quantity>
+	</item>	
+	<item>
+		<id>1046</id>
+		<name>Pineapple</name>
+		<price>3</price>
+
+		<quantity>120</quantity>
+	</item>	
+	<item>
+		<id>1047</id>
+		<name>Pomegranate</name>
+		<price>5</price>
+		<quantity>112</quantity>
+
+	</item>	
+	<item>
+		<id>1048</id>
+		<name>Raisin</name>
+		<price>4</price>
+		<quantity>111</quantity>
+	</item>	
+	<item>
+
+		<id>1049</id>
+		<name>Raspberry</name>
+		<price>5</price>
+		<quantity>156</quantity>
+	</item>	
+	<item>
+		<id>1050</id>
+
+		<name>Western raspberry (blackcap)</name>
+		<price>6</price>
+		<quantity>173</quantity>
+	</item>	
+	<item>
+		<id>1051</id>
+		<name>Rambutan</name>
+
+		<price>6</price>
+		<quantity>145</quantity>
+	</item>	
+	<item>
+		<id>1052</id>
+		<name>Redcurrant</name>
+		<price>3</price>
+
+		<quantity>190</quantity>
+	</item>	
+	<item>
+		<id>1053</id>
+		<name>Salal berry</name>
+		<price>3</price>
+		<quantity>137</quantity>
+
+	</item>	
+	<item>
+		<id>1054</id>
+		<name>Satsuma</name>
+		<price>1</price>
+		<quantity>197</quantity>
+	</item>	
+	<item>
+
+		<id>1055</id>
+		<name>Star fruit</name>
+		<price>4</price>
+		<quantity>142</quantity>
+	</item>	
+	<item>
+		<id>1056</id>
+
+		<name>Strawberry</name>
+		<price>6</price>
+		<quantity>178</quantity>
+	</item>	
+	<item>
+		<id>1057</id>
+		<name>Tangerine</name>
+
+		<price>4</price>
+		<quantity>119</quantity>
+	</item>	
+	<item>
+		<id>1058</id>
+		<name>Tomato</name>
+		<price>6</price>
+
+		<quantity>167</quantity>
+	</item>	
+	<item>
+		<id>1059</id>
+		<name>Ugli fruit</name>
+		<price>4</price>
+		<quantity>179</quantity>
+
+	</item>	
+	<item>
+		<id>1060</id>
+		<name>Watermelon</name>
+		<price>6</price>
+		<quantity>149</quantity>
+	</item>	
+	<item>
+
+		<id>1061</id>
+		<name>Ziziphus mauritiana</name>
+		<price>5</price>
+		<quantity>180</quantity>
+	</item>	
+</fruits>
