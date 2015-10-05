@@ -37,16 +37,17 @@ class xml2csv:
 
 
 	def convert(self, tag="item", delimiter=",", ignore=[], noheader=False,
-				limit=-1, buffer_size=1000):
+				limit=-1, buffer_size=1000, quotes=True):
 
-		"""Convert the XML file to SQL file
+		"""Convert the XML file to CSV file
 
 			Keyword arguments:
 			tag -- the record tag. eg: item
 			delimiter -- csv field delimiter
 			ignore -- list of tags to ignore
 			limit -- maximum number of records to process
-			buffer -- number of records to keep in buffer before writing to disk
+			buffer_size -- number of records to keep in buffer before writing to disk
+			quotes -- insert quotes around values (e.g. "user@domain.com")
 
 			Returns:
 			number of records converted,
@@ -94,7 +95,10 @@ class xml2csv:
 					tagged = True
 
 					# send the csv to buffer
-					self.output_buffer.append(r'"' + (r'"' + delimiter + r'"').join(items) + r'"')
+					if quotes:
+						self.output_buffer.append(r'"' + (r'"' + delimiter + r'"').join(items) + r'"')
+					else:
+						self.output_buffer.append((delimiter).join(items))
 					items = []
 					n += 1
 
