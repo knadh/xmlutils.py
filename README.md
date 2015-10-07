@@ -143,7 +143,7 @@ number of records converted
 ```python
 from xmlutils.xml2json import xml2json
 
-converter = xml2json("samples/fruits.xml", "samples/fruits.sql", encoding="utf-8")
+converter = xml2json("samples/fruits.xml", "samples/fruits.json", encoding="utf-8")
 converter.convert()
 
 # to get a json string
