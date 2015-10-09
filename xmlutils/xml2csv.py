@@ -59,6 +59,7 @@ class xml2csv:
 		items = []
 		header_line = []
 		field_name = ''
+		processed_fields = []
 
 		tagged = False
 		started = False
@@ -73,6 +74,8 @@ class xml2csv:
 			should_tag = not tagged and should_write and not noheader
 
 			if event == 'start':
+				if elem.tag==tag:
+					processed_fields=[]
 				if elem.tag == tag and not started:
 					started = True
 				elif should_tag:
@@ -80,7 +83,8 @@ class xml2csv:
 					field_name = '_'.join((field_name, elem.tag)) if field_name else elem.tag
 
 			else:
-				if should_write:
+				if should_write and elem.tag not in processed_fields:
+					processed_fields.append(elem.tag)
 					if should_tag:
 						header_line.append(field_name)  # add field name to csv header
 						# remove current tag from the tag name chain
