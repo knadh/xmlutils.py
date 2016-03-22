@@ -30,16 +30,21 @@ class xml2json:
 
 	def get_json(self, pretty=True):
 		"""
-			Convert an XML file to json string
+			Convert an XML file to json string (Tested with python 2.7.8 on Windows 7)
 
 		 	Keyword arguments:
 			pretty -- pretty print json (default=True)
 		"""
 
-		self.context = iter(self.context)
-		event, root = self.context.next()
+	        iterator = iter(self.context)
 
-		return self._elem2json(root, pretty)
+	        try:
+	            while True:
+	                event, root = iterator.next()
+	        except StopIteration:
+	            print("Event StopIteration found, done!")
+	        finally:
+	            return self._elem2json(root2, pretty)
 
 	def convert(self, pretty=True):
 		"""
