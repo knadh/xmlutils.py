@@ -44,7 +44,7 @@ class xml2json:
 	        except StopIteration:
 	            print("Event StopIteration found, done!")
 	        finally:
-	            return self._elem2json(root2, pretty)
+	            return self._elem2json(root, pretty)
 
 	def convert(self, pretty=True):
 		"""
