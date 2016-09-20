@@ -3,8 +3,8 @@
 	Kailash Nadh, http://nadh.in
 	December 2012
 	
-	License:        MIT License
-	Documentation:    http://nadh.in/code/xmlutils.py
+	License:	MIT License
+	Documentation	http://nadh.in/code/xmlutils.py
 """
 
 import codecs
@@ -36,15 +36,15 @@ class xml2json:
 			pretty -- pretty print json (default=True)
 		"""
 
-	        iterator = iter(self.context)
+		iterator = iter(self.context)
 
-	        try:
-	            while True:
-	                event, root = iterator.next()
-	        except StopIteration:
-	            print("Event StopIteration found, done!")
-	        finally:
-	            return self._elem2json(root, pretty)
+		try:
+			while True:
+				event, root = iterator.next()
+		except StopIteration:
+			print("Event StopIteration found, done!")
+		finally:
+			return self._elem2json(root, pretty)
 
 	def convert(self, pretty=True):
 		"""
@@ -81,14 +81,14 @@ class xml2json:
 			# create meaningful lists
 			scalar = False
 			try:
-				if elem[0].tag != elem[1].tag:  # [{a: 1}, {b: 2}, {c: 3}] => {a: 1, b: 2, c: 3}
+				if elem[0].tag != elem[1].tag: # [{a: 1}, {b: 2}, {c: 3}] => {a: 1, b: 2, c: 3}
 					cur = dict(zip(
 						map(lambda e: e.keys()[0], cur),
 						map(lambda e: e.values()[0], cur)
 					))
 				else:
 					scalar = True
-			except Exception as e:  # [{a: 1}, {a: 2}, {a: 3}] => {a: [1, 2, 3]}
+			except Exception as e: # [{a: 1}, {a: 2}, {a: 3}] => {a: [1, 2, 3]}
 				scalar = True
 
 			if scalar:
