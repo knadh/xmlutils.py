@@ -1,4 +1,7 @@
+**NOTICE (May 2017):** I'm no longer able to maintain this project or look at posted issues. If you're interested in maintaining, please let me know.
+
 # xmlutils.py
+
 xmlutils.py is a set of Python utilities for processing xml files serially  
 for converting them to various formats (SQL, CSV, JSON). The scripts use 
 ElementTree.iterparse() to iterate through nodes in an XML document, thus not 
