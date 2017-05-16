@@ -1,4 +1,5 @@
-**NOTICE (May 2017):** I'm no longer able to maintain this project or look at posted issues. If you're interested in maintaining, please let me know.
+> **NOTICE (May 2017):** I'm no longer able to maintain this project or look at posted issues.
+If you're interested in maintaining, please let me know.
 
 # xmlutils.py
 
