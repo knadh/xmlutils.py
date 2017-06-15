@@ -59,12 +59,14 @@ def run_xml2csv():
 	parser.add_argument('--limit', type=int, dest='limit', default=-1, help='maximum number of records to process')
 	parser.add_argument('--buffer_size', type=int, dest='buffer_size', default='1000',
 						help='number of records to keep in buffer before writing to disk (default=1000)')
+	parser.add_argument('--noquotes', dest='noquotes', action='store_true', help='no quotes around values')
 
 	args = parser.parse_args()
 
 	converter = xml2csv(args.input_file, args.output_file, args.encoding)
 	num = converter.convert(tag=args.tag, delimiter=args.delimiter, ignore=args.ignore,
-							noheader=args.noheader, limit=args.limit, buffer_size=args.buffer_size)
+							noheader=args.noheader, limit=args.limit, buffer_size=args.buffer_size,
+							quotes=not args.noquotes)
 
 	print "\n\nWrote", num, "records to", args.output_file
 
