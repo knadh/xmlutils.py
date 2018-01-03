@@ -14,10 +14,10 @@ from xmlutils.xmltable2csv import xmltable2csv
 
 
 def run_xml2sql():
-	print """xml2sql by Kailash Nadh (http://nadh.in)
+	print("""xml2sql
 	--help for help
 
-	"""
+	""")
 
 	# parse arguments
 	parser = argparse.ArgumentParser(description='Convert an xml file to sql.')
@@ -37,15 +37,15 @@ def run_xml2sql():
 	converter = xml2sql(args.input_file, args.output_file, args.encoding)
 	num = converter.convert(tag=args.tag, table=args.table, ignore=args.ignore, limit=args.limit, packet=args.packet)
 
-	print "\n\nWrote", num['num'], "records to", args.output_file, \
-		" (INSERT queries =", num['num_insert'], ")"
+	print("\n\nWrote", num['num'], "records to", args.output_file, \
+		" (INSERT queries =", num['num_insert'], ")")
 
 
 def run_xml2csv():
-	print """xml2csv by Kailash Nadh (http://nadh.in)
+	print("""xml2csv
 	--help for help
 
-	"""
+	""")
 
 	# parse arguments
 	parser = argparse.ArgumentParser(description='Convert an xml file to csv format.')
@@ -68,14 +68,14 @@ def run_xml2csv():
 							noheader=args.noheader, limit=args.limit, buffer_size=args.buffer_size,
 							quotes=not args.noquotes)
 
-	print "\n\nWrote", num, "records to", args.output_file
+	print("\n\nWrote", num, "records to", args.output_file)
 
 
 def run_xmltable2csv():
-	print """xmltable2csv by Yigal Lazarev (http://yig.al)
+	print("""xmltable2csv by Yigal Lazarev (http://yig.al)
 	--help for help
 
-	"""
+	""")
 
 	# parse arguments
 	parser = argparse.ArgumentParser(description='Convert an xml file to csv format.')
@@ -95,14 +95,14 @@ def run_xmltable2csv():
 	num = converter.convert(tag=args.tag, delimiter=args.delimiter,
 							noheader=args.noheader, limit=args.limit, buffer_size=args.buffer_size)
 
-	print "\n\nWrote", num, "records to", args.output_file
+	print("\n\nWrote", num, "records to", args.output_file)
 
 
 def run_xml2json():
-	print """xml2json by Kailash Nadh (http://nadh.in)
+	print("""xml2json
 	--help for help
 
-	"""
+	""")
 
 	# parse arguments
 	parser = argparse.ArgumentParser(description='Convert an xml file to json.')
@@ -117,4 +117,4 @@ def run_xml2json():
 	converter = xml2json(args.input_file, args.output_file, args.encoding)
 	num = converter.convert(pretty=args.pretty)
 
-	print "Wrote to", args.output_file
+	print("Wrote to", args.output_file)
