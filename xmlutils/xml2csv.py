@@ -54,7 +54,13 @@ class xml2csv:
         """
 
         # get to the root
-        event, root = self.context.next()
+        # try-catch to ensure support for python 2/3 versions: iter.next() in python 2 changed to next(iter) in python 3
+        try:
+            # for py version 2.x
+            event, root = self.context.next()
+        except AttributeError:
+            # for py version 3.x
+            event, root = next(self.context)
 
         items = []
         header_line = []
