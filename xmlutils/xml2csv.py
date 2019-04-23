@@ -54,7 +54,19 @@ class xml2csv:
         """
 
         # get to the root
-        event, root = self.context.next()
+        # to ensure support for python 2/3 versions: iter.next() in python 2 changed to next(iter) in python 3
+        try:
+            try:
+                # for py version 2.x
+                event, root = self.context.next()
+            except AttributeError:
+                # for py version 3.x
+                event, root = next(self.context)
+        except et.ParseError as e:
+            # Invalid XML file - so close the file handle and delete it
+            self.output.close()
+            os.remove(self.input_file)
+            raise e
 
         items = []
         header_line = []
