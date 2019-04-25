@@ -25,7 +25,7 @@ nested hierarchies. Lastly, the XML files are not validated at the time of conve
 - Pypi: [https://pypi.python.org/pypi/xmlutils](https://pypi.python.org/pypi/xmlutils)
 
 
-#Installation
+# Installation
 With pip or easy_install
 
 ```pip install xmlutils``` or ```easy_install xmlutils```
@@ -34,18 +34,18 @@ Or from the source
 
 ```python setup.py install```
 
-#Commandline utilities
+# Commandline utilities
 Once the package is installed, the three bundled commandline utilities should be available
 from the terminal.
 
-##xml2csv
+## xml2csv
 Convert an XML document to a CSV file.
 
 ```
 xml2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
 ```
 
-######Arguments
+###### Arguments
 ```
 --input 	Input XML document's filename*
 --output 	Output CSV file's filename*
@@ -58,14 +58,14 @@ xml2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
 --buffer 	The number of records to be kept in memory before it is written to the output CSV file. Helps reduce the number of disk writes. Default is 1000
 ```
 
-##xmltable2csv
+## xmltable2csv
 Convert an XML table to a CSV file.
 
 ```
 xmltable2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "Data"
 ```
 
-######Arguments
+###### Arguments
 ```
 --input         Input XML table's filename*
 --output        Output CSV file's filename*
@@ -77,14 +77,14 @@ xmltable2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "D
 --buffer        The number of records to be kept in memory before it is written to the output CSV file. Helps reduce the number of disk writes. Default is 1000.
 ```
 
-##xml2sql
+## xml2sql
 Convert an XML document to an SQL file.
 
 ```
 xml2sql --input "samples/fruits.xml" --output "samples/fruits.sql" --tag "item" --table "myfruits"
 ```
 
-######Arguments
+###### Arguments
 ```
 --tag           the record tag. eg: item
 --table         table name
@@ -93,15 +93,15 @@ xml2sql --input "samples/fruits.xml" --output "samples/fruits.sql" --tag "item" 
 --packet        maximum size of an insert query in MB (MySQL's max_allowed_packet)
 ```
 
-##xml2json
+## xml2json
 Convert XML to JSON.
 xml2json supports hierarchies nested to any number of levels.
 
 ```xml2json --input "samples/fruits.xml" --output "samples/fruits.json"```
 
-#Modules
+# Modules
 
-##xmlutils.xml2sql
+## xmlutils.xml2sql
 ```python
 from xmlutils.xml2sql import xml2sql
 
@@ -109,7 +109,7 @@ converter = xml2sql("samples/fruits.xml", "samples/fruits.sql", encoding="utf-8"
 converter.convert(tag="item", table="table")
 ```
 
-######Arguments
+###### Arguments
 ```
 tag 	-- the record tag. eg: item
 table	-- table name
@@ -123,7 +123,7 @@ Returns:
 }
 ```
 
-##xmlutils.xml2csv
+## xmlutils.xml2csv
 ```python
 from xmlutils.xml2csv import xml2csv
 
@@ -131,7 +131,7 @@ converter = xml2csv("samples/fruits.xml", "samples/fruits.csv", encoding="utf-8"
 converter.convert(tag="item")
 ```
 
-######Arguments
+###### Arguments
 ```
 tag	-- the record tag. eg: item
 delimiter -- csv field delimiter
@@ -143,7 +143,7 @@ Returns:
 number of records converted
 ```
 
-##xmlutils.xml2json
+## xmlutils.xml2json
 ```python
 from xmlutils.xml2json import xml2json
 
@@ -155,7 +155,7 @@ converter = xml2json("samples/fruits.xml", encoding="utf-8")
 print converter.get_json()
 ```
 
-######Arguments
+###### Arguments
 ```
 pretty	-- pretty print?
 ```
