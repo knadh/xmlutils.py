@@ -2,7 +2,7 @@
 	xml2sql.py
 	Kailash Nadh, http://nadh.in
 	October 2011
-	
+
 	License:        MIT License
 	Documentation:    http://nadh.in/code/xmlutils.py
 """
@@ -57,7 +57,12 @@ class xml2sql:
 		self.context = iter(self.context)
 
 		# get to the root
-		event, root = self.context.next()
+		try:
+			# for py version 2.x
+			event, root = self.context.next()
+		except AttributeError:
+			# for py version 3.x
+			event, root = next(self.context)
 
 		items = []
 		fields = []

@@ -1,7 +1,7 @@
 """
     Kailash Nadh, http://nadh.in
     June 2013
-    
+
     License:        MIT License
     Documentation:  http://nadh.in/code/xmlutils.py
 """
@@ -14,14 +14,9 @@ from xmlutils.xmltable2csv import xmltable2csv
 
 
 def run_xml2sql():
-    print("""xml2sql
-    --help for help
-
-    """)
-
     # parse arguments
     parser = argparse.ArgumentParser(description='Convert an xml file to sql.')
-    parser.add_argument('--input', type=file, dest='input_file', required=True, help='input xml filename')
+    parser.add_argument('--input', dest='input_file', type=argparse.FileType('r'), required=True, help='input xml filename')
     parser.add_argument('--output', dest='output_file', required=True, help='output sql filename')
     parser.add_argument('--tag', dest='tag', required=True, help='the record tag. eg: item')
     parser.add_argument('--table', dest='table', required=True, help='table name')
@@ -42,14 +37,9 @@ def run_xml2sql():
 
 
 def run_xml2csv():
-    print("""xml2csv
-    --help for help
-
-    """)
-
     # parse arguments
     parser = argparse.ArgumentParser(description='Convert an xml file to csv format.')
-    parser.add_argument('--input', dest='input_file', required=True, help='input xml filename')
+    parser.add_argument('--input', dest='input_file', type=argparse.FileType('r'), required=True, help='input xml filename')
     parser.add_argument('--output', dest='output_file', required=True, help='output csv filename')
     parser.add_argument('--tag', dest='tag', required=True, help='the record tag. eg: item')
     parser.add_argument('--delimiter', dest='delimiter', default=',', help='delimiter character. (default=,)')
@@ -72,14 +62,9 @@ def run_xml2csv():
 
 
 def run_xmltable2csv():
-    print("""xmltable2csv by Yigal Lazarev (http://yig.al)
-    --help for help
-
-    """)
-
     # parse arguments
     parser = argparse.ArgumentParser(description='Convert an xml file to csv format.')
-    parser.add_argument('--input', dest='input_file', required=True, help='input xml filename')
+    parser.add_argument('--input', dest='input_file', type=argparse.FileType('r'), required=True, help='input xml filename')
     parser.add_argument('--output', dest='output_file', required=True, help='output csv filename')
     parser.add_argument('--tag', dest='tag', required=True, help='the record tag. eg: Data')
     parser.add_argument('--delimiter', dest='delimiter', default=',', help='delimiter character. (default=,)')
@@ -99,14 +84,9 @@ def run_xmltable2csv():
 
 
 def run_xml2json():
-    print("""xml2json
-    --help for help
-
-    """)
-
     # parse arguments
     parser = argparse.ArgumentParser(description='Convert an xml file to json.')
-    parser.add_argument('--input', type=file, dest='input_file', required=True, help='input xml filename')
+    parser.add_argument('--input', dest='input_file', type=argparse.FileType('r'), required=True, help='input xml filename')
     parser.add_argument('--output', dest='output_file', required=True, help='output json filename')
     parser.add_argument('--pretty', dest='pretty', required=False, default=False, action='store_true', \
                         help='pretty print? (default=False)')

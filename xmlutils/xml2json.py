@@ -2,7 +2,7 @@
     xml2json.py
     Kailash Nadh, http://nadh.in
     December 2012
-    
+
     License:        MIT License
     Documentation:    http://nadh.in/code/xmlutils.py
 """
@@ -40,7 +40,13 @@ class xml2json:
 
         try:
             while True:
-                event, root = iterator.next()
+                try:
+                    # for py version 2.x
+                    event, root = iterator.next()
+                except AttributeError:
+                    # for py version 3.x
+                    event, root = next(self.context)
+
         except StopIteration:
             print("Event StopIteration found, done!")
         finally:
@@ -73,10 +79,13 @@ class xml2json:
         block = {}
 
         # get the element's children
-        children = elem.getchildren()
+        try:
+            children = elem.getchildren()
+        except AttributeError:
+            children = list(elem)
 
         if children:
-            cur = map(self._elem2list, children)
+            cur = list(map(self._elem2list, children))
 
             # create meaningful lists
             scalar = False
@@ -93,7 +102,7 @@ class xml2json:
 
             if scalar:
                 if len(cur) > 1:
-                    cur = {elem[0].tag: [e.values()[0] for e in cur if e.values()[0] is not None]}
+                    cur = {elem[0].tag: [list(e.values())[0] for e in cur if list(e.values())[0] is not None]}
                 else:
                     cur = {elem[0].tag: cur[0].values()[0] }
 
@@ -107,8 +116,8 @@ class xml2json:
                 val = elem.attrib
                 val = val if len(val) > 0 else None
 
-            block[elem.tag] = val 
-        
+            block[elem.tag] = val
+
         return block
 
 

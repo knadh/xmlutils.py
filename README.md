@@ -62,7 +62,7 @@ xml2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "item"
 Convert an XML table to a CSV file.
 
 ```
-xmltable2csv --input "samples/fruits.xml" --output "samples/fruits.csv" --tag "Data"
+xmltable2csv --input "samples/simple-table.xml" --output "samples/simple-table.csv" --tag "Data"
 ```
 
 ###### Arguments
